@@ -1,4 +1,10 @@
-
+if has('nvim')
+    let s:editor_root=expand("~/.config/nvim")
+    set rtp+=~/.config/nvim/bundle/Vundle.vim
+else
+    let s:editor_root=expand("~/.vim")
+    set rtp+=~/.vim/bundle/Vundle.vim
+endif
 
 set number
 set bg=dark
@@ -12,6 +18,8 @@ set smartindent
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+"call vundle#rc(s:editor_root . '/bundle')
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -22,6 +30,9 @@ Plugin 'VundleVim/Vundle.vim'
 
 " git clone https://github.com/scrooloose/nerdtree.git
 Plugin 'scrooloose/nerdtree'
+
+" sudo apt-get install -y vim-youcompleteme
+"Plugin 'ycm-core/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -47,5 +58,10 @@ let NERDTreeShowHidden=1
 
 " Open Terminal below all splits
 cabbrev bterm bo term
+
+" YouCompleteMe
+let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf=0
+let g:ycm_python_binary_path='/usr/bin/python3'
 
 
